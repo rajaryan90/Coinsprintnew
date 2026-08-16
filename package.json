@@ -1,0 +1,32 @@
+{
+  "name": "arc-launchpad",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Fair-launch memecoin bonding-curve launchpad: LaunchpadFactory + MemecoinBondingCurve + TokenMetadataRegistry, deploy scripts, integration test, and static frontend.",
+  "license": "MIT",
+  "scripts": {
+    "compile": "node scripts/compile.mjs",
+    "node": "hardhat node",
+    "deploy:local": "npm run compile && cross-env NETWORK=local node scripts/deploy.mjs",
+    "deploy:arc-testnet": "npm run compile && cross-env NETWORK=arc-testnet node scripts/deploy.mjs",
+    "deploy:arc-mainnet": "npm run compile && cross-env NETWORK=arc-mainnet node scripts/deploy.mjs",
+    "test:integration": "npm run compile && node test/test-market-integration.mjs",
+    "test": "npm run test:integration",
+    "build": "npm run compile && npm run build:frontend",
+    "build:frontend": "node scripts/build-frontend-config.mjs",
+    "frontend": "npm run build:frontend && npx --yes serve frontend -l 8080"
+  },
+  "dependencies": {
+    "chart.js": "4.4.4",
+    "ethers": "6.17.0"
+  },
+  "devDependencies": {
+    "@openzeppelin/contracts": "5.6.1",
+    "@openzeppelin/contracts-upgradeable": "5.6.1",
+    "dotenv": "16.6.1",
+    "hardhat": "2.29.0",
+    "cross-env": "7.0.3",
+    "solc": "0.8.24"
+  }
+}
